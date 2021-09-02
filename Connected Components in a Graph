@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#include<vector>
+#include<set>
+#include<string>
+#define ll long long 
+#define vi vector<int>
+#define vs vector<string>
+#define vst vector<string>::iterator
+#define vit vector<int>::iterator
+using namespace std;
+const int mx= 100000;
+//int cnt;
+bool vis[mx];
+vector<int>adj[mx];
+void dfs(int u){
+       vis[u]=1;
+       for(auto v: adj[u]){
+            if(vis[v]==0){
+            	dfs(v);
+            
+            } 
+       }
+}
+int main(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+    int n,m;
+    cin>>n>>m;
+    for(int i=1;i<=m;i++){
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    int cnt=0;
+    for(int i=1;i<=n;i++){
+           	 if(vis[i]==0){
+           	 	dfs(i);
+           	 	cnt++; 
+           	 }
+           
+            //cout<<cnt<<endl;     
+
+    }  
+ 
+    cout<<cnt<<endl;
+
+
+   return 0;
+}       
